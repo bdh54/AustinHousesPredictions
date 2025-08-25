@@ -1,2 +1,4 @@
 # AustinHousesPredictions
+## Authors / Group
+Cassandre Korvink, Mihir Jeshurun Gandham, Abby Peck, Brendan Hendricks
 R script that takes Austin housing data, engineers sensible features (text flags like pool/cul-de-sac/granite/renovation, miles to downtown, a school ratio, zipcode dummies, and a few interaction terms), splits 80/20 with a fixed seed, and runs AIC-based stepwise on a full linear model to decide what to keep. Using that feature set, it trains a decision tree (and prunes it), bagging (randomForest with mtry = p), a standard random forest (mtry = sqrt(p)), and XGBoost on log(price) with predictions transformed back to dollars. RMSEs are printed on the test split. The same feature pipeline is applied to austinhouses_holdout (same schema, no prices); any missing zipcode_* dummies are added as zeros so columns align. Final predictions are written to holdout_predictions_group13.csv from XGBoost which consistently gave the lowest RMSE.
